@@ -283,7 +283,8 @@ foreach ($result as $row) {
               if (isset($_SESSION['customer'])) {
                 ?>
                 <li><i class="fa fa-user"></i> <?php echo LANG_VALUE_13; ?>
-                  <?php echo $_SESSION['customer']['cust_name']; ?></li>
+                  <?php echo $_SESSION['customer']['cust_name']; ?>
+                </li>
                 <li><a href="dashboard.php"><i class="fa fa-home"></i> <?php echo LANG_VALUE_89; ?></a></li>
                 <?php
               } else {
@@ -298,7 +299,7 @@ foreach ($result as $row) {
                     Login
                   </button>
                 </li>
-              <?php
+                <?php
               }
               ?>
             </ul>
@@ -552,35 +553,28 @@ foreach ($result as $row) {
     </div>
 </div> -->
 
-    <div class="product-categories">
-      <?php
-      $query = "SELECT CATEGORY_NAME, CATEGORY_IMAGE FROM category";
-      $result = $connection->query($query);
-      if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-          ?>
-          <div class="product-category">
-            <a href="#" class="link-body-emphasis link-underline-opacity-0">
-              <div class="img-category">
-                <img src="<?php echo $row['CATEGORY_IMAGE']; ?>">
-              </div>
-              <p class="category-txt"><?php echo $row['CATEGORY_NAME']; ?></p>
-            </a>
-          </div>
-          <?php
+<div class="product-categories">
+    <?php
+    // $query = "SELECT CATEGORY_NAME, CATEGORY_IMAGE FROM category";
+    // $result = $connection->query($query);
+    $statement = $pdo->prepare("SELECT * FROM category");
+    $statement->execute();
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($result as $row) {
+            ?>
+            <div class="product-category">
+                <a href="#" class="link-body-emphasis link-underline-opacity-0">
+                    <div class="img-category">
+                        <img src="<?php echo $row['CATEGORY_IMAGE']; ?>">
+                    </div>
+                    <p class="category-txt"><?php echo $row['CATEGORY_NAME']; ?></p>
+                </a>
+            </div>
+            <?php
         }
-      } else {
-        echo "No categories found.";
-      }
-      ?>
-    </div>
-
-
-
-
-
-
-
+  
+    ?>
+</div>
 
 
 
