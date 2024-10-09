@@ -46,7 +46,7 @@
                         </td>
 	                    <td>
 	                        <a href="category-edit.php?id=<?php echo $row['CATEGORY_ID']; ?>" class="btn btn-primary btn-xs">Edit</a>
-	                        <a href="#" class="btn btn-danger btn-xs" data-href="category-delete.php?id=<?php echo $row['CATEGORY_ID']; ?>" data-toggle="modal" data-target="#confirm-delete">Delete</a>
+	                        <a href="#" class="btn btn-danger btn-xs"  data-toggle="modal" data-target="#confirm-delete-<?php echo $row['CATEGORY_ID']; ?>">Delete</a>
 	                    </td>
 	                </tr>
             		<?php
@@ -60,25 +60,32 @@
 
 </section>
 
-
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure want to delete this item?</p>
-                <p style="color:red;">Be careful! All products, mid level categories and end level categories under this top lelvel category will be deleted from all the tables like order table, payment table, size table, color table, rating table etc.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger btn-ok">Delete</a>
+<?php
+foreach ($result as $row) {
+?>
+<form  method="POST" action="category-delete.php">
+    <div class="modal fade" id="confirm-delete-<?php echo $row['CATEGORY_ID']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure want to delete this item?</p>
+                    <p style="color:red;">Be careful! All products, mid level categories and end level categories under this top lelvel category will be deleted from all the tables like order table, payment table, size table, color table, rating table etc.</p>
+                    <input type="hidden" name="category_name" value="<?php echo $row['CATEGORY_NAME']; ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+</form>
+<?php
+}
+?>
 
 <?php require_once('footer.php'); ?>
