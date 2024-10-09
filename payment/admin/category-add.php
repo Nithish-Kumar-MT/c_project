@@ -23,7 +23,7 @@ if (isset($_POST['form'])) {
         $category_image = $_FILES['CATEGORY_IMAGE']['name'];
         $target_dir = '/../assets/uploads/'; // adjust the upload directory as needed
         $target_file = $target_dir . basename($category_image);
-        move_uploaded_file($_FILES['CATEGORY_IMAGE']['tmp_name'], $target_file);
+        move_uploaded_file($_FILES['CATEGORY_IMAGE']['name'], $target_file);
 
         $statement = $pdo->prepare("INSERT INTO category (CATEGORY_NAME, CATEGORY_IMAGE) VALUES (:CATEGORY_NAME, :CATEGORY_IMAGE)");
         $statement->execute([':CATEGORY_NAME' => $_POST['CATEGORY_NAME'], ':CATEGORY_IMAGE' => $category_image]);

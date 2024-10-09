@@ -40,6 +40,7 @@
 					<tr>
 	                    <td><?php echo $i; ?></td>
 	                    <td><?php echo $row['CATEGORY_NAME']; ?></td>
+						<td><?php echo $row['CATEGORY_IMAGE']; ?></td>
                         <td>
                            
                         </td>
