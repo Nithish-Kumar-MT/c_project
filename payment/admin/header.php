@@ -157,7 +157,7 @@ if(!isset($_SESSION['user'])) {
 
                             <li><a href="#"><i class="fa fa-circle-o"></i> Scrolling Text</a></li>
                             <li><a href="quote.php"><i class="fa fa-circle-o"></i> Quote</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Category</a></li>
+                            <li><a href="categories.php"><i class="fa fa-circle-o"></i> Category</a></li>
                         </ul>
                     </li>
 
