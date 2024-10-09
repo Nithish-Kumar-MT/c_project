@@ -6,7 +6,8 @@ if (isset($_POST['form'])) {
 
     if (empty($_POST['CATEGORY_NAME'])) {
         $valid = 0;
-        $error_message .= "Top Category Name can not be empty<br>";
+        $error_message .= "Category Name can not be empty<br>";
+
     } else {
         // Duplicate Category checking
         $statement = $pdo->prepare("SELECT * FROM category WHERE CATEGORY_NAME=?");
@@ -35,7 +36,7 @@ if (isset($_POST['form'])) {
 
 <section class="content-header">
     <div class="content-header-left">
-        <h1>Add Top Level Category</h1>
+        <h1>Add Category</h1>
     </div>
     <div class="content-header-right">
         <a href="categories.php" class="btn btn-primary btn-sm">View All</a>
@@ -61,13 +62,13 @@ if (isset($_POST['form'])) {
                 <div class="box box-info">
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Top Category Name <span>*</span></label>
+                            <label for="" class="col-sm-2 control-label">Category Name <span>*</span></label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" name="CATEGORY_NAME">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Category Image</label>
+                            <label for="" class="col-sm-2 control-label">Category Image <span>*</span></label>
                             <div class="col-sm-4">
                                 <input type="file" id="category_image" name="CATEGORY_IMAGE"
                                     accept=".png, .jpg, .jpeg, .gif">
